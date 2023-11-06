@@ -42,32 +42,35 @@
 		  	</div>
 		</div>
 
+
 		<div class="card my-5">
 			<div class="card-header">
 		    	Data Kecamatan
 		  	</div>
 		  	<div class="p-5">
-		  		<a href="{{ route('add_kel') }}" class="btn btn-primary">Tambah</a>
+		  		<a href="{{ route('add_kec') }}" class="btn btn-primary">Tambah</a>
 		  	</div>
 		  	<div class="card">
-			    <table id="example" class="display" style="width:100%">
+			    <table id="t_kec" class="display" style="width:100%">
 			    	<thead>
 				    	<tr>
 				    		<td>No.</td>
 				    		<td>Kode</td>
+				    		<td>Nama Kecamatan</td>
 				    		<td>Nama Provinsi</td>
 				    		<td>Active</td>
 				    		<td>Action</td>
 				    	</tr>
 			    	</thead>
 			    	<tbody>
-			    		@foreach($kel as $kelu)
+			    		@foreach($kec as $keca)
 				    		<tr>
 				    			<td>{{ $loop->iteration }}</td>
-				    			<td>{{ $kelu->kode }}</td>
-				    			<td>{{ $kelu->name }}</td>
-				    			<td><input type='checkbox' value='{{ $kelu->id }}' @if($kelu->active == 'active') checked @endif onchange="kelu(this.value)"></td>
-				    			<td><a href="{{ route('edit_kelu', ['id' => $kelu->id]) }}" class="btn btn-warning">Edit</a> <button class="btn btn-danger" onclick="del_kelu(this.value)" value="{{ $kelu->id }}">Delete</button></td>
+				    			<td>{{ $keca->kode }}</td>
+				    			<td>{{ $keca->name }}</td>
+				    			<td>{{ $keca->provinsi }}</td>
+				    			<td><input type='checkbox' value='{{ $keca->id }}' @if($keca->active == 'active') checked @endif onchange="kec(this.value)"></td>
+				    			<td><a href="{{ route('edit_kec', ['id' => $keca->id]) }}" class="btn btn-warning">Edit</a> <button class="btn btn-danger" onclick="del_kec(this.value)" value="{{ $keca->id }}">Delete</button></td>
 				    		</tr>
 			    		@endforeach
 			    	</tbody>
@@ -80,60 +83,76 @@
 		    	Data Kelurahan
 		  	</div>
 		  	<div class="p-5">
-		  		<button class="btn btn-primary">Tambah</button>
+		  		<a href="{{ route('add_kel') }}" class="btn btn-primary">Tambah</a>
 		  	</div>
 		  	<div class="card">
-			    <table id="example" class="display" style="width:100%">
+			    <table id="t_kel" class="display" style="width:100%">
 			    	<thead>
 				    	<tr>
 				    		<td>No.</td>
 				    		<td>Kode</td>
+				    		<td>Nama Kelurahan</td>
+				    		<td>Nama Kecamatan</td>
 				    		<td>Nama Provinsi</td>
 				    		<td>Active</td>
 				    		<td>Action</td>
 				    	</tr>
 			    	</thead>
 			    	<tbody>
-			    		@foreach($provinsi as $prov)
+			    		@foreach($kel as $kelu)
 				    		<tr>
 				    			<td>{{ $loop->iteration }}</td>
-				    			<td>{{ $prov->kode }}</td>
-				    			<td>{{ $prov->name }}</td>
-				    			<td></td>
-				    			<td></td>
+				    			<td>{{ $kelu->kode }}</td>
+				    			<td>{{ $kelu->name }}</td>
+				    			<td>{{ $kelu->kecamatan }}</td>
+				    			<td>{{ $kelu->provinsi }}</td>
+				    			<td><input type='checkbox' value='{{ $kelu->id }}' @if($kelu->active == 'active') checked @endif onchange="kel(this.value)"></td>
+				    			<td><a href="{{ route('edit_kel', ['id' => $kelu->id]) }}" class="btn btn-warning">Edit</a> <button class="btn btn-danger" onclick="del_kel(this.value)" value="{{ $kelu->id }}">Delete</button></td>
 				    		</tr>
 			    		@endforeach
 			    	</tbody>
 			    </table>
 		  	</div>
 		</div>
-
 		<div class="card my-5">
 			<div class="card-header">
 		    	Data Pegawai
 		  	</div>
 		  	<div class="p-5">
-		  		<button class="btn btn-primary">Tambah</button>
+		  		<a href="{{ route('add_peg') }}" class="btn btn-primary">Tambah</a>
 		  	</div>
 		  	<div class="card">
-			    <table id="example" class="display" style="width:100%">
+			    <table id="t_peg" class="display" style="width:100%">
 			    	<thead>
 				    	<tr>
-				    		<td>No.</td>
-				    		<td>Kode</td>
-				    		<td>Nama Provinsi</td>
-				    		<td>Active</td>
+				    		<td>Nama Pegawai</td>
+				    		<td>Tempat Lahir</td>
+				    		<td>Tgl.Lahir</td>
+				    		<td>Jenis Kelamin</td>
+				    		<td>Agama</td>
+				    		<td>Alamat</td>
+				    		<td>Kelurahan</td>
+				    		<td>Kecamatan</td>
+				    		<td>Provinsi</td>
 				    		<td>Action</td>
 				    	</tr>
 			    	</thead>
 			    	<tbody>
-			    		@foreach($provinsi as $prov)
+			    		@foreach($pegawai as $peg)
 				    		<tr>
-				    			<td>{{ $loop->iteration }}</td>
-				    			<td>{{ $prov->kode }}</td>
-				    			<td>{{ $prov->name }}</td>
-				    			<td></td>
-				    			<td></td>
+				    			<td>{{ $peg->name }}</td>
+				    			<td>{{ $peg->tempat_lahir }}</td>
+				    			<td>{{ $peg->tgl_lahir }}</td>
+				    			<td>{{ $peg->jenis_kelamin }}</td>
+				    			<td>{{ $peg->agama }}</td>
+				    			<td>{{ $peg->alamat }}</td>
+				    			<td>{{ $peg->kelurahan }}</td>
+				    			<td>{{ $peg->kecamatan }}</td>
+				    			<td>{{ $peg->provinsi }}</td>
+				    			<td>
+				    				<a href="{{ route('edit_peg', ['id' => $peg->id]) }}" class="btn btn-warning">Edit</a> 
+				    				<button class="btn btn-danger" onclick="del_peg(this.value)" value="{{ $peg->id }}">Delete</button>
+				    			</td>
 				    		</tr>
 			    		@endforeach
 			    	</tbody>
@@ -156,7 +175,9 @@
 		
         $(document).ready(function () {
             $('#example').DataTable();
-        
+            $('#t_kec').DataTable();
+            $('#t_kel').DataTable();
+            $('#t_peg').DataTable();
 
         });
 
@@ -175,14 +196,13 @@
 
         }
 
-
-        function kelu(val) {
+        function kec(val) {
 	        
 	        $.ajax({
 	            type: "GET",
-	            url: "{{ route('active_prov')}}",
+	            url: "{{ route('active_kec')}}",
 	            data: {
-	                id_prov : val,
+	                id : val,
 	            },
 	            success: function(responses){  
 	            	console.log(responses)
@@ -191,6 +211,22 @@
 
         }
 
+        function kel(val) {
+	        
+	        $.ajax({
+	            type: "GET",
+	            url: "{{ route('active_kel')}}",
+	            data: {
+	                id : val,
+	            },
+	            success: function(responses){  
+	            	console.log(responses)
+	            }
+	        });
+
+        }
+
+
         function del_prov(val) {
 	        
 	        $.ajax({
@@ -198,6 +234,48 @@
 	            url: "{{ route('del_prov')}}",
 	            data: {
 	                id_prov : val,
+	            },
+	            success: function(responses){  
+					location.reload()
+	            }
+	        });
+        }
+
+        function del_kel(val) {
+	        
+	        $.ajax({
+	            type: "GET",
+	            url: "{{ route('del_kel')}}",
+	            data: {
+	                id : val,
+	            },
+	            success: function(responses){  
+					location.reload()
+	            }
+	        });
+        }
+
+        function del_kec(val) {
+	        
+	        $.ajax({
+	            type: "GET",
+	            url: "{{ route('del_kec')}}",
+	            data: {
+	                id : val,
+	            },
+	            success: function(responses){  
+					location.reload()
+	            }
+	        });
+        }
+
+        function del_peg(val) {
+	        
+	        $.ajax({
+	            type: "GET",
+	            url: "{{ route('del_peg')}}",
+	            data: {
+	                id : val,
 	            },
 	            success: function(responses){  
 					location.reload()
